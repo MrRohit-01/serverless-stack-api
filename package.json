@@ -1,0 +1,25 @@
+{
+  "name": "notes-api",
+  "version": "2.2.0",
+  "description": "A Node.js starter for Serverless Framework with ES6 and TypeScript support",
+  "main": "handler.js",
+  "scripts": {
+    "test": "serverless-bundle test"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.1394.0",
+    "serverless-bundle": "^6.0.0",
+    "serverless-dotenv-plugin": "^2.4.2",
+    "serverless-offline": "^12.0.4"
+  },
+  "dependencies": {
+    "uuid": "^7.0.3"
+  }
+}
+  
