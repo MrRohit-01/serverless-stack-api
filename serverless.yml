@@ -1,7 +1,7 @@
 # NOTE: update this with your service name
 service: notes-api
 
-# Create an optimized package for our functions 
+# Create an optimized package for our functions
 package:
   individually: true
 
@@ -16,7 +16,6 @@ provider:
   stage: prod
   region: us-east-1
 
-
   # These environment variables are made available to our functions
   # under process.env.
   environment:
@@ -27,7 +26,8 @@ provider:
   #  ↪ DynamoDB.
   iamRoleStatements:
     - Effect: Allow
-      Action: "dynamodb:*"
+      Action:
+        "dynamodb:*"
         # - dynamodb:Scan
         # - dynamodb:Query
         # - dynamodb:GetItem
@@ -45,5 +45,23 @@ functions:
     handler: create.main
     events:
       - http:
-        path: notes
-        method: post
+          path: notes
+          method: post
+  get:
+     # Defines an HTTP API endpoint that calls the main function in get.js
+     # - path: url path is /notes/{id}
+     # - method: GET request
+      handler: get.main
+      events:
+        - http:
+            path: notes/{id}
+            method: get
+  list:
+      # Defines an HTTP API endpoint that calls the main function in list.js
+      # - path: url path is /notes
+      # - method: GET request
+      handler: list.main
+      events:
+        - http:
+            path: notes
+            method: get
