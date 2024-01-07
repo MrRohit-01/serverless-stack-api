@@ -1,5 +1,5 @@
 # NOTE: update this with your service name
-service: notes-api
+service: notes-api-rohit
 
 # Create an optimized package for our functions
 package:
@@ -48,6 +48,7 @@ functions:
       - http:
           path: notes
           method: post
+          cors: true
           authorizer: aws_iam
   get:
     # Defines an HTTP API endpoint that calls the main function in get.js
@@ -58,6 +59,7 @@ functions:
       - http:
           path: notes/{id}
           method: get
+          cors: true
           authorizer: aws_iam
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
@@ -68,6 +70,7 @@ functions:
       - http:
           path: notes
           method: get
+          cors: true
           authorizer: aws_iam
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
@@ -78,6 +81,7 @@ functions:
       - http:
           path: notes/{id}
           method: put
+          cors: true
           authorizer: aws_iam
   delete:
     # Defines an HTTP API endpoint that calls the main function in delete.js
@@ -88,8 +92,22 @@ functions:
       - http:
           path: notes/{id}
           method: delete
+          cors: true
           authorizer: aws_iam
+  scan:
+    # Defines an HTTP API endpoint that calls the main function in scan.js
+    # - path: url path is /notes/scan
+    # - method: GET request
+    handler: scan.main
+    events:
+      - http:
+          path: notes/scan
+          method: get
+          cors: true
+          authorizer: aws_iam
+
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
   - ${file(resources/api-gateway-errors.yml)}
+  
